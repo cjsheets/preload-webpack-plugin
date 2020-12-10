@@ -61,7 +61,9 @@ class PreloadPlugin {
     const sortedFilteredFiles = filteredFiles.sort();
 
     const links = [];
-    const publicPath = compilation.outputOptions.publicPath || '';
+    const publicPath = compilation.outputOptions.publicPath && compilation.outputOptions.publicPath !== 'auto'
+      ? compilation.outputOptions.publicPath 
+      : '';
     for (const file of sortedFilteredFiles) {
       const href = `${publicPath}${file}`;
 
